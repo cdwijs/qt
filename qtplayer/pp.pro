@@ -36,8 +36,13 @@ HEADERS += \
     player/videothread.h \
     player/audiothread.h
 
+win32: {
+message(compiling on win32)
+LIBS += -L$$PWD/ffmpeg-dev/lib/ -lavdevice -lavfilter -lavformat -lavcodec -lpostproc -lswscale -lswresample  -lavutil
+INCLUDEPATH += $$PWD/ffmpeg-dev/include
+DEPENDPATH += $$PWD/ffmpeg-dev/include
+}
+else {
 INCLUDEPATH += /usr/local/ffmpeg/include
 LIBS += -L/usr/local/ffmpeg/lib -lavdevice -lavfilter -lavformat -lavcodec -lpostproc -lswscale -lswresample  -lavutil
-
-
-
+}
